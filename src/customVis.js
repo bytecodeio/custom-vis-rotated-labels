@@ -69,14 +69,13 @@ element.append(visContainer)
       formattedData.push({
 
         country: data[grouping_dim]["value"],
-        count: data[plot_measure]["value"],
+        value: data[plot_measure]["value"],
 
       });
 
 
 
     });
-
 
 
 
@@ -86,151 +85,79 @@ element.append(visContainer)
     var root = am5.Root.new("chartdiv");
 
 
-    var myTheme = am5.Theme.new(root);
-
-    myTheme.rule("Grid", ["base"]).setAll({
-      strokeOpacity: 0.1
-    });
-
-
     root.setThemes([
-      am5themes_Animated.new(root),
-      myTheme
+      am5themes_Animated.new(root)
     ]);
 
-    var chart = root.container.children.push(
-      am5xy.XYChart.new(root, {
-        panX: false,
-        panY: false,
-        wheelX: "none",
-        wheelY: "none"
-      })
-    );
+
+
+    var chart = root.container.children.push(am5xy.XYChart.new(root, {
+      panX: true,
+      panY: true,
+      wheelX: "panX",
+      wheelY: "zoomX",
+      pinchZoomX: true
+    }));
+
+
+    var cursor = chart.set("cursor", am5xy.XYCursor.new(root, {}));
+    cursor.lineY.set("visible", false);
 
 
 
-    var yRenderer = am5xy.AxisRendererY.new(root, { minGridDistance: 30 });
-    yRenderer.grid.template.set("location", 1);
-
-    var yAxis = chart.yAxes.push(
-      am5xy.CategoryAxis.new(root, {
-        maxDeviation: 0,
-        categoryField: "country",
-        renderer: yRenderer
-      })
-    );
-
-    var xAxis = chart.xAxes.push(
-      am5xy.ValueAxis.new(root, {
-        maxDeviation: 0,
-        min: 0,
-        renderer: am5xy.AxisRendererX.new(root, {
-          visible: true,
-          strokeOpacity: 0.1
-        })
-      })
-    );
-
-
-
-    var series = chart.series.push(
-      am5xy.ColumnSeries.new(root, {
-        name: "Series 1",
-        xAxis: xAxis,
-        yAxis: yAxis,
-        valueXField: "count",
-        sequencedInterpolation: true,
-        categoryYField: "country"
-      })
-    );
-
-    var columnTemplate = series.columns.template;
-
-    columnTemplate.setAll({
-      draggable: true,
-      cursorOverStyle: "pointer",
-      tooltipText: "drag to rearrange",
-      cornerRadiusBR: 10,
-      cornerRadiusTR: 10,
-      strokeOpacity: 0
+    var xRenderer = am5xy.AxisRendererX.new(root, { minGridDistance: 30 });
+    xRenderer.labels.template.setAll({
+      rotation: -90,
+      centerY: am5.p50,
+      centerX: am5.p100,
+      paddingRight: 15
     });
-    columnTemplate.adapters.add("fill", (fill, target) => {
+
+    xRenderer.grid.template.setAll({
+      location: 1
+    })
+
+    var xAxis = chart.xAxes.push(am5xy.CategoryAxis.new(root, {
+      maxDeviation: 0.3,
+      categoryField: "country",
+      renderer: xRenderer,
+      tooltip: am5.Tooltip.new(root, {})
+    }));
+
+    var yAxis = chart.yAxes.push(am5xy.ValueAxis.new(root, {
+      maxDeviation: 0.3,
+      renderer: am5xy.AxisRendererY.new(root, {
+        strokeOpacity: 0.1
+      })
+    }));
+
+
+
+    var series = chart.series.push(am5xy.ColumnSeries.new(root, {
+      name: "Series 1",
+      xAxis: xAxis,
+      yAxis: yAxis,
+      valueYField: "value",
+      sequencedInterpolation: true,
+      categoryXField: "country",
+      tooltip: am5.Tooltip.new(root, {
+        labelText: "{valueY}"
+      })
+    }));
+
+    series.columns.template.setAll({ cornerRadiusTL: 5, cornerRadiusTR: 5, strokeOpacity: 0 });
+    series.columns.template.adapters.add("fill", function(fill, target) {
       return chart.get("colors").getIndex(series.columns.indexOf(target));
     });
 
-    columnTemplate.adapters.add("stroke", (stroke, target) => {
+    series.columns.template.adapters.add("stroke", function(stroke, target) {
       return chart.get("colors").getIndex(series.columns.indexOf(target));
     });
 
-    columnTemplate.events.on("dragstop", () => {
-      sortCategoryAxis();
-    });
-
-
-    function getSeriesItem(category) {
-      for (var i = 0; i < series.dataItems.length; i++) {
-        var dataItem = series.dataItems[i];
-        if (dataItem.get("categoryY") == category) {
-          return dataItem;
-        }
-      }
-    }
-
-
-    // Axis sorting
-    function sortCategoryAxis() {
-      // Sort by value
-      series.dataItems.sort(function(x, y) {
-        return y.get("graphics").y() - x.get("graphics").y();
-      });
-
-      var easing = am5.ease.out(am5.ease.cubic);
-
-      // Go through each axis item
-      am5.array.each(yAxis.dataItems, function(dataItem) {
-        // get corresponding series item
-        var seriesDataItem = getSeriesItem(dataItem.get("category"));
-
-        if (seriesDataItem) {
-          // get index of series data item
-          var index = series.dataItems.indexOf(seriesDataItem);
-
-          var column = seriesDataItem.get("graphics");
-
-          // position after sorting
-          var fy =
-            yRenderer.positionToCoordinate(yAxis.indexToPosition(index)) -
-            column.height() / 2;
-
-          // set index to be the same as series data item index
-          if (index != dataItem.get("index")) {
-            dataItem.set("index", index);
-
-            // current position
-            var x = column.x();
-            var y = column.y();
-
-            column.set("dy", -(fy - y));
-            column.set("dx", x);
-
-            column.animate({ key: "dy", to: 0, duration: 600, easing: easing });
-            column.animate({ key: "dx", to: 0, duration: 600, easing: easing });
-          } else {
-            column.animate({ key: "y", to: fy, duration: 600, easing: easing });
-            column.animate({ key: "x", to: 0, duration: 600, easing: easing });
-          }
-        }
-      });
-
-
-      yAxis.dataItems.sort(function(x, y) {
-        return x.get("index") - y.get("index");
-      });
-    }
 
 
 
-    yAxis.data.setAll(formattedData);
+    xAxis.data.setAll(formattedData);
     series.data.setAll(formattedData);
 
 
@@ -238,7 +165,6 @@ element.append(visContainer)
     chart.appear(1000, 100);
 
     });
-
 
 doneRendering()
   }
