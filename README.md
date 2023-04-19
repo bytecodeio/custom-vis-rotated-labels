@@ -1,19 +1,19 @@
-Open source Bar Chart Drag and  Drop  using Amchart.js:
+Open source Custom Vis Rotated Labels using Amchart.js:
 
 https://www.amcharts.com
 
-<img width="1372" alt="Screen Shot 2023-04-18 at 8 47 54 AM" src="https://user-images.githubusercontent.com/114446653/232784012-60631bb8-8f04-4b77-bea6-0c2d2ced67b9.png">
+<img width="1241" alt="Screen Shot 2023-04-19 at 3 25 46 PM" src="https://user-images.githubusercontent.com/114446653/233179443-a2ea7136-7b73-46f7-9206-505c5927b75a.png">
 
 
 To run locally, download the repo, then npm i, npm run build, and npm start.
 
 Add the appropriate parameters to your manifest file in Looker. Something like this:
 
-project_name: “custom-bar-drag-and-drop”
+project_name: “custom-vis-rotated-labels”
 
 visualization: {
-id: “custom-bar-drag-and-drop”
-label: “Drag and Drop amCharts”
+id: “custom-vis-rotated-labels”
+label: “Custom Vis Rotated Labels”
 url: “https://localhost:8080/bundle.js”
 
 dependencies: [
