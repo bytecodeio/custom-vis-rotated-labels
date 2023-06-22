@@ -25,3 +25,11 @@ visualization: {
   label: "Custom Vis Dev"
   url: "https://localhost:8080/bundle.js"
 }
+
+
+visualization: {
+  id: "table_vis"
+  label: "Custom Table - Bytecode Dev"
+
+  file: "custom_table.js"
+}
