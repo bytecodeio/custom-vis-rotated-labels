@@ -17,3 +17,11 @@ visualization: {
   file: "src/customVis.js"
 
 }
+
+
+
+visualization: {
+  id: "custom-vis-dev"
+  label: "Custom Vis Dev"
+  url: "https://localhost:8080/bundle.js"
+}
