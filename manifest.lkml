@@ -33,3 +33,11 @@ visualization: {
 
   file: "custom_table.js"
 }
+
+
+visualization: {
+  id: "donut_vis_2023"
+  label: "Custom Donut - 2023"
+
+  file: "donut.js"
+}
