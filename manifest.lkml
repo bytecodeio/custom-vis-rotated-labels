@@ -29,9 +29,9 @@ visualization: {
 
 visualization: {
   id: "table_vis"
-  label: "Custom Table - Bytecode Dev"
+  label: "Custom Table"
 
-  file: "custom_table.js"
+  file: "custom_table_for_broker.js"
 }
 
 
