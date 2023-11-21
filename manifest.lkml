@@ -28,6 +28,14 @@ visualization: {
 
 
 visualization: {
+  id: "currency"
+  label: "Currency Chart"
+  file: "currency.js"
+}
+
+
+
+visualization: {
   id: "table_vis"
   label: "Custom Table"
 
