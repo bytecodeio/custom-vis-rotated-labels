@@ -30,7 +30,7 @@ visualization: {
 visualization: {
   id: "currency"
   label: "Currency Chart"
-  file: "currency.js"
+  file: "bundle-currency.js"
 }
 
 
