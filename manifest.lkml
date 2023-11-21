@@ -29,8 +29,8 @@ visualization: {
 
 visualization: {
   id: "currency"
-  label: "Currency Chart"
-  file: "bundle-new.js"
+  label: "Currency Bar Chart"
+  file: "currency-bar-chart.js"
 }
 
 
