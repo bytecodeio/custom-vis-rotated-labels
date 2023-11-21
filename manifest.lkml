@@ -33,6 +33,13 @@ visualization: {
   file: "currency-bar-chart.js"
 }
 
+visualization: {
+  id: "currency-scatter"
+  label: "Currency Scatter Chart"
+  file: "currency-scatter-chart.js"
+}
+
+
 
 
 visualization: {
