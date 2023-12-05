@@ -30,20 +30,20 @@ visualization: {
 visualization: {
   id: "currency"
   label: "Currency Column Chart"
-  file: "currency-column.js"
+  file: "column-bundle.js"
 }
 
 visualization: {
   id: "currency-line"
   label: "Currency Line Chart"
-  file: "currency-line.js"
+  file: "line-bundle.js"
 }
 
 
 visualization: {
   id: "currency-scatter"
   label: "Currency Scatter Chart"
-  file: "currency-scatter.js"
+  file: "scatter-bundle.js"
 }
 
 
