@@ -51,9 +51,9 @@ visualization: {
 
 visualization: {
   id: "table_vis"
-  label: "Custom Table"
+  label: "Custom Table with Pagination"
 
-  file: "custom_table_for_broker.js"
+  file: "custom_table.js"
 }
 
 
