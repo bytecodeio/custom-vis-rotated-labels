@@ -17,3 +17,12 @@ visualization: {
   file: "src/customVis.js"
 
 }
+
+
+
+visualization: {
+  id:"custom-vis-dev"
+  label:"Custom KPI for Zendesk"
+  # url: "https://localhost:8080/bundle.js"
+  file: "zendesk.js"
+}
