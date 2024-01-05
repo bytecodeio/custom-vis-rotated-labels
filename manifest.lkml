@@ -20,13 +20,22 @@ visualization: {
 
 
 
+visualization: {
+
+  id:"zen-table"
+  label:"Custom Table for Zendesk"
+  # url: "https://localhost:8080/bundle.js"
+  file: "zen-table.js"
+
+}
+
 
 visualization: {
 
   id:"zen"
   label:"Custom KPI for Zendesk"
   # url: "https://localhost:8080/bundle.js"
-  file: "zendesk.js"
+  file: "zen-kpi.js"
 
 }
 
