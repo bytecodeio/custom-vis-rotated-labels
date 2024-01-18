@@ -86,3 +86,11 @@ visualization: {
   file: "donut.js"
 
 }
+
+visualization: {
+  id: "custom_viz_dev_jng"
+  label: "Custom Viz Dev JNg"
+
+  file: "bundle_jng.js"
+
+}
