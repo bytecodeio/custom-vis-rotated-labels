@@ -48,6 +48,7 @@ visualization: {
 }
 
 
+
 visualization: {
   id: "currency"
   label: "Currency Column Chart"
