@@ -74,7 +74,7 @@ visualization: {
   id: "kpi_vis"
   label: "2024 Custom KPI"
 
-  file: "kpi.js"
+  file: "example.js"
 }
 
 
@@ -99,5 +99,15 @@ visualization: {
   label: "Custom Viz Dev JNg"
 
   file: "bundle_jng.js"
+
+}
+
+
+
+visualization: {
+  id: "bars"
+  label: "Example for Ross"
+
+  file: "bars-bundle.js"
 
 }
