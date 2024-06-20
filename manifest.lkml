@@ -103,6 +103,14 @@ visualization: {
 }
 
 
+visualization: {
+  id: "table2"
+  label: "Zen Table"
+
+  file: "zen-tab.js"
+}
+
+
 
 visualization: {
   id: "bars"
