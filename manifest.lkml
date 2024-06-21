@@ -119,3 +119,12 @@ visualization: {
   file: "bars-bundle.js"
 
 }
+
+
+visualization: {
+  id: "bars-table"
+  label: "Table with Progress Bars"
+
+  file: "bars-table.js"
+
+}
