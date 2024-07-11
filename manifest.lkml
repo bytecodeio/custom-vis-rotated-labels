@@ -55,7 +55,7 @@ visualization: {
   id: "kpi_vis"
   label: "2024 Custom KPI"
 
-  file: "example.js"
+  file: "custom-kpi.js"
 }
 
 
