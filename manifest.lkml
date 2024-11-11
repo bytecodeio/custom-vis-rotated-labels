@@ -30,6 +30,16 @@ visualization: {
 
 
 
+visualization: {
+
+  id: "umg"
+  label: "UMG"
+  #url: "https://localhost:8080/bundle.js"
+  file: "umg/bundle.js"
+}
+
+
+
 # visualization: {
 #   id: "currency"
 #   label: "Currency Column Chart"
@@ -115,5 +125,14 @@ visualization: {
   id: "venn"
   label: "Venn Diagram"
   file: "venn-bundle.js"
+
+}
+
+
+
+visualization: {
+  id: "gantt"
+  label: "Gantt Chart"
+  file: "ganttD3.js"
 
 }
