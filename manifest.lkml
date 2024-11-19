@@ -136,3 +136,11 @@ visualization: {
   file: "ganttD3.js"
 
 }
+
+
+visualization: {
+  id: "table-custom"
+  label: "Adjutable Widths Table"
+  file: "table-custom.js"
+
+}
